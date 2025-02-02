@@ -1,36 +1,70 @@
-### Documentation
+# Path Value Resolver
 
-The PathValueResolver provides two distinct methods to resolve values from JSON files, each catering to different types of JSON structures.
-The choice of method to call depends on the structure of the JSON you're working with:
+## Overview
+This project provides a `Resolver` component for extracting values from JSON strings based on a specified path. The `Resolver` supports both simple and complex JSON structures, utilizing the `ValueExtractor` class to handle path resolution logic.
 
-Use simpleJsonPathValueResolver for simple, non-array JSONs, and complexJsonPathValueResolver for JSONs that contain arrays.
+## Features
+- Extract values from JSON based on a specified path.
+- Supports both simple and complex JSON structures.
+- Gracefully handles errors during JSON processing.
 
-1. simpleJsonPathValueResolver:
-This method is designed for simple JSON files, where the structure, where the data structure consists of key-value pairs and does not involve arrays. 
-ARGS: 
- - json - specify simple JSON string
- - path - specify a path (a dot-separated string) to retrieve a specific value from the JSON object. 
-This method is ideal for straightforward JSON files with key-value pairs, where no nested arrays need to be handled.
+## Components
+### Resolver
+- **Class**: `com.bloomteq.pathvalueresolution.resolver.Resolver`
+- **Description**: The main component for resolving values from a JSON string. It provides methods to extract values from both simple and complex JSON structures.
 
-2. complexJsonPathValueResolver:
-This method is tailored for more complex JSON files that include arrays.
-ARGS:
- - json - specify complex JSON string
- - path - specify a path (a dot-separated string) to retrieve a specific value from the JSON object.
-You can specify a path (a dot-separated string) to retrieve a specific value from the JSON object.
-It can handle JSON objects with arrays at various levels, ensuring that values from within these arrays are resolved correctly. 
-This method will process the path and correctly navigate through arrays, providing the value even if it is contained within an array.
+#### Methods:
+- `getSimpleJsonValue(String json, String path)`: Extracts a simple value from the JSON string using the specified path.
+- `getComplexJsonValue(String json, String path)`: Extracts a complex value from the JSON string using the specified path.
 
-In the main class of the project, both methods are demonstrated with example usages showing how to:
-- pass the JSON data and 
-- pass the path to the value you wish to extract. 
+### ValueExtractor
+- **Class**: `com.bloomteq.pathvalueresolution.util.ValueExtractor`
+- **Description**: Contains methods for extracting values from a JSON tree based on a specified path. Handles both simple and complex extraction logic.
 
-By specifying the appropriate JSON data and path, you can leverage these resolvers to access values in both simple and complex JSON files efficiently. 
+#### Methods:
+- `extractSimpleJsonValue(JsonNode nodes, String path)`: Extracts a simple value (text) from the JSON tree.
+- `extractComplexJsonValue(JsonNode nodes, String path)`: Extracts a complex value (could involve array traversal) from the JSON tree.
 
+### PathResolverApplication
+- **Class**: `com.bloomteq.pathvalueresolution.PathResolverApplication`
+- **Description**: The entry point of the application that demonstrates how to use the `Resolver` to extract values from JSON.
 
+## Example 1: Simple JSON Path Resolution
 
+### Input JSON:
+```json
+{
+  "property1": "value1",
+  "property2": "value2"
+}
+```
+### Path:
+```angular2html
+property1
+```
+### Result
+```angular2html
+value1
+```
+## Example 2: Complex JSON Path Resolution
+```json
+{
+  "property1": [
+    {
+      "property2": "value1"
+    },
+    {
+      "property2": "value2"
+    }
+  ]
+}
+```
+### Path:
+```angular2html
+property1.property2
+```
 
-
-
-
-
+### Result
+```angular2html
+value1
+``` 
