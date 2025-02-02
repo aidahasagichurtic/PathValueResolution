@@ -14,16 +14,16 @@ This project provides a `Resolver` component for extracting values from JSON str
 - **Description**: The main component for resolving values from a JSON string. It provides methods to extract values from both simple and complex JSON structures.
 
 #### Methods:
-- `getSimpleJsonValue(String json, String path)`: Extracts a simple value from the JSON string using the specified path.
-- `getComplexJsonValue(String json, String path)`: Extracts a complex value from the JSON string using the specified path.
+- `getSimpleJsonValue(String json, String path)`: Extracts value from the simple JSON string using the specified path.
+- `getComplexJsonValue(String json, String path)`: Extracts value from the complex JSON string using the specified path.
 
 ### ValueExtractor
 - **Class**: `com.bloomteq.pathvalueresolution.util.ValueExtractor`
 - **Description**: Contains methods for extracting values from a JSON tree based on a specified path. Handles both simple and complex extraction logic.
 
 #### Methods:
-- `extractSimpleJsonValue(JsonNode nodes, String path)`: Extracts a simple value (text) from the JSON tree.
-- `extractComplexJsonValue(JsonNode nodes, String path)`: Extracts a complex value (could involve array traversal) from the JSON tree.
+- `extractSimpleJsonValue(JsonNode nodes, String path)`: Extracts value (text) from the JSON tree.
+- `extractComplexJsonValue(JsonNode nodes, String path)`: Extracts value (could involve array traversal) from the JSON tree.
 
 ### PathResolverApplication
 - **Class**: `com.bloomteq.pathvalueresolution.PathResolverApplication`
